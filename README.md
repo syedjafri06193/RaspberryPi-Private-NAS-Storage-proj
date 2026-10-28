@@ -49,7 +49,20 @@ The NAS system uses OpenMediaVault to manage storage services and integrates enc
 5. Set up automated backups
 6. Enable remote access
 
-Full instructions are in the `/docs` folder.
+Full instructions are in [`1—Documentation/`](1—Documentation/README.md), starting with the
+[installation guide](1—Documentation/installation-guide.md).
+
+## Scripts
+
+| Script | Purpose |
+|---|---|
+| [`scripts/encryption-setup.sh`](scripts/encryption-setup.sh) | LUKS2-encrypt, format and mount the data disk (recommended) |
+| [`scripts/disk-setup.sh`](scripts/disk-setup.sh) | Format and mount an unencrypted data disk |
+| [`scripts/backup-cron.sh`](scripts/backup-cron.sh) | Nightly rsync mirror to the backup disk, refusing to run unless both disks are mounted |
+
+The setup scripts take the partition as an argument (e.g. `/dev/sda1`), refuse to
+touch a mounted device, ask for confirmation before erasing, and print the
+`/etc/fstab` / `/etc/crypttab` lines to persist the mount.
 
 ## Example Use Cases
 
